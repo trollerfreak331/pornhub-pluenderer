@@ -11,4 +11,4 @@ if __name__ == "__main__":
     viewKeys = ex.extract_viewkeys(rsp)
 
     for key in viewKeys:
-        print(url)
+        print(key)

@@ -8,6 +8,7 @@ if __name__ == "__main__":
     url = "https://pornhub.com"
 
     rsp = dl.get(url)
-    urls = ex.extract_urls(url, rsp)
-    for url in urls:
-        print(url)
+    viewKeys = ex.extract_viewkeys(rsp)
+
+    for key in viewKeys:
+        print(key)

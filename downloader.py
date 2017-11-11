@@ -15,5 +15,5 @@ class Downloader(object):
 
         with self._storage.new_file(filename) as file:
             for chunk in rsp.iter_content(chunk_size=4096):
-                if chunk:
+                if chunk:  # filter out "keep-alive" chunks
                     file.write(chunk)

@@ -9,8 +9,12 @@ if __name__ == "__main__":
     ex = Extractor()
     url = "https://pornhub.com"
 
-    rsp = dl.get(url)
-    viewKeys = ex.extract_viewkeys(rsp)
+    main_page = dl.get(url)
+    viewkeys = ex.extract_viewkeys(main_page)
 
-    for key in viewKeys:
-        puts(colored.green(key))
+    for i, key in enumerate(viewkeys):
+        absolute_url = "https://pornhub.com/view_video.php?viewkey=" + key
+        page = dl.get(absolute_url)
+
+        title = ex.extract_title(page)
+        puts(colored.green("%d -> %s : %s" % (i, key, title)))

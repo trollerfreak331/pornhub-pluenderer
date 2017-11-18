@@ -4,16 +4,16 @@ from storage import Storage
 
 class Downloader(object):
     def __init__(self):
-        self._storage = Storage()
+        self.storage = Storage()
 
     def get(self, url):
         rsp = http.get(url)
         return rsp.text
 
-    def save_file(self, url, filename):
-        rsp = http.get(url, stream=True)
-
-        with self._storage.new_file(filename) as file:
-            for chunk in rsp.iter_content(chunk_size=4096):
+    def save_file(self, url, name):
+        file = self.storage.new_file(name)
+        if file:
+            rsp = http.get(url, stream=True)
+            for chunk in rsp.iter_content(chunk_size=1000 * 1024):
                 if chunk:  # filter out "keep-alive" chunks
                     file.write(chunk)

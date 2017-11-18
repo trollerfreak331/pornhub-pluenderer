@@ -10,11 +10,16 @@ if __name__ == "__main__":
     url = "https://pornhub.com"
 
     main_page = dl.get(url)
-    viewkeys = ex.extract_viewkeys(main_page)
+    viewkeys = ex.get_viewkeys(main_page)
 
-    for i, key in enumerate(viewkeys):
+    for key in viewkeys:
         absolute_url = "https://pornhub.com/view_video.php?viewkey=" + key
         page = dl.get(absolute_url)
+        info = ex.get_video_info(page)
 
-        title = ex.extract_title(page)
-        puts(colored.green("%d -> %s : %s" % (i, key, title)))
+        if info == None:
+            continue
+
+        hdQuality = info['mediaDefinitions'][0]
+        puts(colored.green(hdQuality["videoUrl"]))
+        dl.save_file(hdQuality["videoUrl"], info['video_title'] + ".mp4")

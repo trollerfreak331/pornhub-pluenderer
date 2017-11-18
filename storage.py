@@ -16,7 +16,7 @@ class Storage(object):
             self._skipped_files.append(filename)
             raise AlreadyDownloadedError(filename)
 
-        return open(filename, "wb")
+        return open("download/" + filename, "wb")
 
     @property
     def skipped_files(self):

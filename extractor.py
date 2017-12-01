@@ -1,14 +1,14 @@
 import re
 import json
 
-ViewKey_Re = r"a.+?href=\".+?viewkey=(.+?)\""
-Info_Re = r"var flashvars_.+? = ({.+})"
+view_key_re = r"a.+?href=\".+?viewkey=(.+?)\""
+info_re = r"var flashvars_.+? = ({.+})"
 
 
 class Extractor(object):
     def __init__(self):
-        self._viewkey_re = re.compile(ViewKey_Re, re.MULTILINE)
-        self._videoinfo_re = re.compile(Info_Re, re.MULTILINE)
+        self._viewkey_re = re.compile(view_key_re, re.MULTILINE)
+        self._videoinfo_re = re.compile(info_re, re.MULTILINE)
 
     def get_viewkeys(self, data):
         matches = re.findall(self._viewkey_re, data)

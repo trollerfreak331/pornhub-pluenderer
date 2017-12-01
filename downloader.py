@@ -6,7 +6,8 @@ class Downloader(object):
     def __init__(self):
         self.storage = Storage()
 
-    def get(self, url):
+    @classmethod
+    def get(cls, url):
         rsp = http.get(url)
         return rsp.text
 

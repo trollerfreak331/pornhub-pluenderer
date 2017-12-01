@@ -1,6 +1,6 @@
 from os import path, makedirs
 
-dl_folder = "download/"
+download_folder = "download/"
 
 
 class AlreadyDownloadedError(Exception):
@@ -18,10 +18,10 @@ class Storage(object):
             self._skipped_files.append(filename)
             raise AlreadyDownloadedError(filename)
 
-        if path.exists(dl_folder) is not True:
-            makedirs(dl_folder)
+        if path.exists(download_folder) is not True:
+            makedirs(download_folder)
 
-        return open(dl_folder + filename, "wb")
+        return open(download_folder + filename, "wb")
 
     @property
     def skipped_files(self):

@@ -2,6 +2,5 @@ language: python
 python:
   - 3.6
 install:
-  - pip install requests
-  - pip install clint
-script: echo "hello ci"
+  - pip install requests clint pycodestyle
+script: pycodestyle *.py

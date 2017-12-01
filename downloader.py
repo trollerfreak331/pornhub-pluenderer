@@ -1,6 +1,7 @@
 import requests as http
 from storage import Storage
 
+
 class Downloader(object):
     def __init__(self):
         self._storage = Storage()

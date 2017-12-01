@@ -1,8 +1,11 @@
 from os import path
 
+
 class AlreadyDownloadedError(Exception):
     def __init__(self, filename):
-        Exception.__init__(self, "The file %s is skipped as it already exists." % filename)
+        message = "The file %s is skipped as it already exists."
+        Exception.__init__(self, message % filename)
+
 
 class Storage(object):
     def __init__(self):

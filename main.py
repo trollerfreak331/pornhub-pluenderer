@@ -1,8 +1,11 @@
 from downloader import Downloader
 from extractor import Extractor
-
-# https://github.com/kennethreitz/clint cool shit \Q-Q/
+import sys
+import signal
 from clint.textui import colored, puts
+
+signal.signal(signal.SIGINT, lambda x, y: sys.exit(0))
+
 
 if __name__ == "__main__":
     dl = Downloader()

@@ -4,3 +4,4 @@ python:
 install:
   - pip install requests
   - pip install clint
+script: echo "hello ci"

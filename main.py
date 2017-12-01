@@ -9,8 +9,17 @@ if __name__ == "__main__":
     ex = Extractor()
     url = "https://pornhub.com"
 
-    rsp = dl.get(url)
-    viewKeys = ex.extract_viewkeys(rsp)
+    main_page = dl.get(url)
+    viewkeys = ex.get_viewkeys(main_page)
 
-    for key in viewKeys:
-        puts(colored.green(key))
+    for key in viewkeys:
+        absolute_url = "https://pornhub.com/view_video.php?viewkey=" + key
+        page = dl.get(absolute_url)
+        info = ex.get_video_info(page)
+
+        if info is None:
+            continue
+
+        hdQuality = info['mediaDefinitions'][0]
+        puts(colored.green(hdQuality["videoUrl"]))
+        dl.save_file(hdQuality["videoUrl"], info['video_title'] + ".mp4")

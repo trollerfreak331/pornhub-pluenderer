@@ -17,7 +17,7 @@ if __name__ == "__main__":
         page = dl.get(absolute_url)
         info = ex.get_video_info(page)
 
-        if info == None:
+        if info is None:
             continue
 
         hdQuality = info['mediaDefinitions'][0]

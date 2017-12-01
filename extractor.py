@@ -12,10 +12,12 @@ class Extractor(object):
 
     def get_viewkeys(self, data):
         matches = re.findall(self._viewkey_re, data)
-        return set(matches) # convert the list of matched strings to a set to eliminate redundant viewkeys
+
+        # convert to a set to eliminate redundant viewkeys
+        return set(matches)
 
     def get_video_info(self, data):
-        infoJson = re.search(self._videoinfo_re, data)
-        if infoJson == None:
+        info_json = re.search(self._videoinfo_re, data)
+        if info_json is None:
             return None
-        return json.loads(infoJson.group(1))
+        return json.loads(info_json.group(1))

@@ -6,7 +6,7 @@ from extractor import Extractor
 
 signal.signal(signal.SIGINT, lambda x, y: sys.exit(0))
 
-
+//gpg test
 def main():
     downloader = Downloader()
     extractor = Extractor()
